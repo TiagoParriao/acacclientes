@@ -1,0 +1,81 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #e0f7fa; /* Azul claro de fundo */
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    justify-content: flex-start; /* Alinha o conteúdo no topo */
+    align-items: center;
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    padding: 10px; /* Reduzi o padding */
+}
+
+/* Estilo da logo */
+.logo {
+    margin-bottom: 10px; /* Reduzi o espaçamento */
+    text-align: center; /* Centraliza a logo */
+}
+
+.logo img {
+    max-width: 200px; /* Largura máxima da logo */
+    height: auto; /* Mantém a proporção */
+}
+
+/* Estilo do card */
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Reduzi o padding */
+    max-width: 400px; /* Largura máxima do card */
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    align-items: center;
+    gap: 15px; /* Espaço entre a foto e os dados */
+}
+
+/* Estilo da foto */
+.foto {
+    width: 300px; /* Largura fixa */
+    height: 300px; /* Altura fixa */
+    border-radius: 15px; /* Arredonda os cantos da foto */
+    overflow: hidden; /* Garante que a imagem não ultrapasse o container */
+}
+
+.foto img {
+    width: 100%; /* Ocupa 100% do espaço do container */
+    height: 100%; /* Ocupa 100% do espaço do container */
+    object-fit: cover; /* Mantém a proporção e cobre o espaço */
+    border: 5px solid #0077b6; /* Azul escuro para a borda da foto */
+    border-radius: 15px; /* Arredonda os cantos da imagem e da borda */
+}
+
+/* Estilo dos dados */
+.dados {
+    width: 100%; /* Ocupa 100% da largura do card */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.dados h1 {
+    color: #0077b6; /* Azul escuro para o título */
+    margin-bottom: 15px; /* Reduzi o espaçamento */
+    font-size: 24px;
+    text-align: center; /* Centraliza o título */
+}
+
+.dados p {
+    margin-bottom: 10px; /* Reduzi o espaçamento */
+    font-size: 18px;
+    color: #333333; /* Cinza escuro para o texto */
+}
+
+.dados strong {
+    color: #0077b6; /* Azul escuro para os rótulos */
+}
