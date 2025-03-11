@@ -43,6 +43,7 @@ body {
     flex-direction: column; /* Alinha os itens verticalmente */
     align-items: center;
     gap: 15px; /* Espaço entre a foto e os dados */
+    overflow-wrap: break-word; /* Ou use word-wrap: break-word; */
 }
 
 /* Estilo da foto */
