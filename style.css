@@ -7,10 +7,14 @@
 }
 
 body {
-    background-color: #e0f7fa; /* Azul claro de fundo */
+    background-image: url('fundoacac.webp'); /* A imagem está na mesma pasta */
+    background-size: cover; /* Faz com que a imagem cubra toda a tela */
+    background-position: center; /* Centraliza a imagem na tela */
+    background-attachment: fixed; /* A imagem de fundo permanece fixa ao rolar a página */
+    background-repeat: no-repeat; /* Impede a repetição da imagem de fundo */
     display: flex;
-    flex-direction: column; /* Alinha os itens verticalmente */
-    justify-content: flex-start; /* Alinha o conteúdo no topo */
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
     padding: 10px; /* Reduzi o padding */
@@ -43,19 +47,22 @@ body {
 
 /* Estilo da foto */
 .foto {
-    width: 300px; /* Largura fixa */
-    height: 300px; /* Altura fixa */
-    border-radius: 15px; /* Arredonda os cantos da foto */
-    overflow: hidden; /* Garante que a imagem não ultrapasse o container */
+    width: 150px;  /* Largura do contêiner (3 partes) */
+    height: 200px; /* Altura do contêiner (4 partes) */
+    border-radius: 15px; /* Arredonda os cantos */
+    overflow: hidden; /* Garante que a imagem não ultrapasse os limites do contêiner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .foto img {
-    width: 100%; /* Ocupa 100% do espaço do container */
-    height: 100%; /* Ocupa 100% do espaço do container */
-    object-fit: cover; /* Mantém a proporção e cobre o espaço */
-    border: 5px solid #0077b6; /* Azul escuro para a borda da foto */
-    border-radius: 15px; /* Arredonda os cantos da imagem e da borda */
+    width: 100%;    /* A imagem ocupa 100% da largura do contêiner */
+    height: 100%;   /* A imagem ocupa 100% da altura do contêiner */
+    object-fit: fill; /* Faz a imagem preencher completamente o contêiner, mesmo que fique achatada */
 }
+
+
 
 /* Estilo dos dados */
 .dados {
