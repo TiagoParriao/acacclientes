@@ -20,6 +20,10 @@ body {
     padding: 10px; /* Reduzi o padding */
 }
 
+.situacao-card div:first-child {
+    margin-right: 5px; /* Adiciona um pequeno espaço abaixo do título */
+}
+
 /* Estilo da logo */
 .logo {
     margin-bottom: 10px; /* Reduzi o espaçamento */
