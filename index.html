@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag para responsividade -->
-        <title>Dados do Funcionário</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados do Funcionário</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .situacao-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa; /* Cor de fundo suave */
+            border: 2px solid #007bff; /* Borda azul */
+            border-radius: 8px; /* Bordas arredondadas */
+            padding: 10px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            width: fit-content;
+            margin: 10px auto; /* Centraliza o card */
+        }
+    </style>
+</head>
 <body>
     <div class="logo">
         <img src="logo-empresa.png" alt="Logo da Empresa">
@@ -13,14 +30,16 @@
 
     <div class="card">
         <div class="foto">
-            <img id="Foto de Identificação (3x4)" src="" alt="Foto do Funcionário"> <!-- ID ajustado -->
+            <img id="Foto de Identificação (3x4)" src="" alt="Foto do Funcionário">
         </div>
         <div class="dados">
             <h1>Dados do Funcionário</h1>
             <p><strong>Empresa:</strong> <span id="Nome da Empresa:"></span></p>
             <p><strong>CNPJ:</strong> <span id="CNPJ:"></span></p>
             <p><strong>Nome:</strong> <span id="Nome Completo:"></span></p>
-            <p><strong>Situação:</strong> <span id="Situação:"></span></p>
+            <div class="situacao-card">
+                <strong>Situação:</strong> <span id="Situação:"></span>
+            </div>
         </div>
     </div>
 
