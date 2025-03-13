@@ -27,8 +27,7 @@ async function buscarDadosFuncionario(id) {
         document.getElementById('Foto de Identificação (3x4)').src = funcionario['Foto de Identificação (3x4)'];
         document.getElementById('Nome da Empresa:').textContent = funcionario['Nome da Empresa:'];
         document.getElementById('Nome Completo:').textContent = funcionario['Nome Completo:'];
-        document.getElementById('CPF:').textContent = funcionario['CPF:'];
-        document.getElementById('Data de Nascimento:').textContent = funcionario['Data de Nascimento:'];
+        document.getElementById('CNPJ:').textContent = funcionario['CNPJ:'];
         document.getElementById('Situação:').textContent = funcionario['Situação:'];
     } else {
         alert('Funcionário não encontrado!');
