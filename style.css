@@ -63,8 +63,6 @@ body {
     object-fit: fill; /* Faz a imagem preencher completamente o contêiner, mesmo que fique achatada */
 }
 
-
-
 /* Estilo dos dados */
 .dados {
     width: 100%; /* Ocupa 100% da largura do card */
@@ -86,4 +84,21 @@ body {
 
 .dados strong {
     color: #0077b6; /* Azul escuro para os rótulos */
+}
+
+/* Estilo do mini card da situação */
+.situacao-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa; /* Cor de fundo suave */
+    border: 2px solid #007bff; /* Borda azul */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    width: fit-content;
+    margin: 10px auto; /* Centraliza o card */
 }
