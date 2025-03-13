@@ -86,9 +86,10 @@ body {
     color: #0077b6; /* Azul escuro para os rótulos */
 }
 
-/* Estilo do mini card da situação */
+/* Estilo do mini card de Situação */
 .situacao-card {
     display: flex;
+    flex-direction: column; /* Alinha o conteúdo verticalmente */
     justify-content: center;
     align-items: center;
     background-color: #f8f9fa; /* Cor de fundo suave */
@@ -101,4 +102,10 @@ body {
     text-align: center;
     width: fit-content;
     margin: 10px auto; /* Centraliza o card */
+}
+
+.situacao-card span {
+    margin-top: 5px; /* Adiciona espaço entre o nome "Situação" e o valor */
+    font-size: 1em;
+    font-weight: normal; /* Mantém o valor da situação menos destacado que o título */
 }
