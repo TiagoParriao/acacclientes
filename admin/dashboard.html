@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filiados — Painel Admin ACAC</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="logo">
+    <img src="../assets/logo-empresa.png" alt="Logo ACAC">
+  </div>
+
+  <div class="container container-largo">
+    <div class="admin-topo">
+      <h1>Filiados</h1>
+      <button type="button" class="btn btn-secundario btn-pequeno" id="btn-sair">Sair</button>
+    </div>
+
+    <div class="card">
+      <div class="filtros">
+        <input type="text" id="busca" placeholder="Buscar por nome, CNPJ ou empresa...">
+        <select id="filtro-situacao">
+          <option value="">Todas as situações</option>
+          <option value="pendente">Pendente</option>
+          <option value="ativo">Ativo</option>
+          <option value="inativo">Inativo</option>
+        </select>
+      </div>
+
+      <p class="carregando" id="carregando">Carregando filiados...</p>
+
+      <table id="tabela-filiados" style="display:none;">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Empresa</th>
+            <th>CNPJ</th>
+            <th>Situação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpo-tabela"></tbody>
+      </table>
+
+      <p class="carregando" id="lista-vazia" style="display:none;">Nenhum filiado encontrado.</p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="../config.js"></script>
+  <script src="../assets/supabase-client.js"></script>
+  <script src="admin-common.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validar Filiado — ACAC</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="logo">
+    <img src="assets/logo-empresa.png" alt="Logo ACAC">
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h1>Validar Carteirinha</h1>
+      <p class="subtitulo">Aponte a câmera para o QR code da carteirinha do filiado.</p>
+
+      <div id="leitor-qr"></div>
+
+      <button type="button" class="btn btn-secundario" id="btn-nova-leitura" style="display:none; margin-top: 16px;">Ler outro QR code</button>
+
+      <div class="card resultado-validacao" id="resultado">
+        <div class="carteirinha">
+          <div class="foto">
+            <img id="foto-resultado" src="" alt="Foto do filiado">
+          </div>
+          <div class="dados">
+            <p><strong>Nome:</strong> <span id="nome-resultado"></span></p>
+            <p><strong>Empresa:</strong> <span id="empresa-resultado"></span></p>
+          </div>
+          <span class="situacao-badge" id="situacao-resultado"></span>
+        </div>
+      </div>
+
+      <div class="mensagem erro" id="erro-resultado" style="display:none;"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script src="config.js"></script>
+  <script src="assets/supabase-client.js"></script>
+  <script src="validar.js"></script>
+</body>
+</html>

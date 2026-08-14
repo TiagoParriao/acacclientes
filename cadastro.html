@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Filiado — ACAC</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="logo">
+    <img src="assets/logo-empresa.png" alt="Logo ACAC">
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h1>Cadastro de Filiado</h1>
+      <p class="subtitulo">Preencha os dados abaixo. Seu cadastro será analisado pela associação antes de ser ativado.</p>
+
+      <form id="form-cadastro">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" required>
+
+        <label for="empresa">Nome da empresa</label>
+        <input type="text" id="empresa" required>
+
+        <label for="cnpj">CNPJ</label>
+        <input type="text" id="cnpj" placeholder="00.000.000/0000-00" required>
+
+        <label for="foto">Foto de identificação (3x4)</label>
+        <input type="file" id="foto" accept="image/*" required>
+
+        <button type="submit" class="btn" id="btn-enviar">Enviar cadastro</button>
+      </form>
+
+      <div id="mensagem" class="mensagem" style="display:none;"></div>
+    </div>
+
+    <div class="card">
+      <a href="index.html" class="btn btn-secundario">Voltar</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="assets/supabase-client.js"></script>
+  <script src="cadastro.js"></script>
+</body>
+</html>

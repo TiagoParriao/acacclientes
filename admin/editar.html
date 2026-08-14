@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Filiado — Painel Admin ACAC</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="logo">
+    <img src="../assets/logo-empresa.png" alt="Logo ACAC">
+  </div>
+
+  <div class="container">
+    <div class="admin-topo">
+      <h1>Editar Filiado</h1>
+      <button type="button" class="btn btn-secundario btn-pequeno" id="btn-sair">Sair</button>
+    </div>
+
+    <div class="card">
+      <h2>Link da carteirinha</h2>
+      <p class="subtitulo" style="margin-bottom:12px;">Envie este link para o filiado. É a página que ele mostra para as empresas parceiras.</p>
+      <div style="display:flex; gap:8px;">
+        <input type="text" id="link-carteirinha" readonly style="flex:1;">
+        <button type="button" class="btn btn-secundario btn-pequeno" id="btn-copiar-link">Copiar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <form id="form-editar">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" required>
+
+        <label for="empresa">Nome da empresa</label>
+        <input type="text" id="empresa" required>
+
+        <label for="cnpj">CNPJ</label>
+        <input type="text" id="cnpj" required>
+
+        <label for="situacao">Situação</label>
+        <select id="situacao">
+          <option value="pendente">Pendente</option>
+          <option value="ativo">Ativo</option>
+          <option value="inativo">Inativo</option>
+        </select>
+
+        <label for="foto">Substituir foto (opcional)</label>
+        <input type="file" id="foto" accept="image/*">
+
+        <button type="submit" class="btn" id="btn-salvar">Salvar alterações</button>
+      </form>
+
+      <div id="mensagem" class="mensagem" style="display:none;"></div>
+
+      <a href="dashboard.html" class="btn btn-secundario" style="margin-top:12px;">Voltar à lista</a>
+    </div>
+
+    <div class="card">
+      <h2>Histórico de alterações</h2>
+      <ul class="historico-lista" id="lista-historico">
+        <li>Carregando...</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="../config.js"></script>
+  <script src="../assets/supabase-client.js"></script>
+  <script src="admin-common.js"></script>
+  <script src="editar.js"></script>
+</body>
+</html>

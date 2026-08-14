@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carteirinha do Filiado — ACAC</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="logo">
+    <img src="assets/logo-empresa.png" alt="Logo ACAC">
+  </div>
+
+  <div class="container">
+    <div class="card" id="card-carregando">
+      <p class="carregando">Carregando carteirinha...</p>
+    </div>
+
+    <div class="card carteirinha" id="card-carteirinha" style="display:none;">
+      <div class="foto">
+        <img id="foto-filiado" src="" alt="Foto do filiado">
+      </div>
+      <div class="dados">
+        <p><strong>Nome:</strong> <span id="nome-filiado"></span></p>
+        <p><strong>Empresa:</strong> <span id="empresa-filiado"></span></p>
+      </div>
+      <span class="situacao-badge" id="situacao-filiado"></span>
+      <div id="qr-code-container"></div>
+    </div>
+
+    <div class="card" id="card-nao-encontrado" style="display:none;">
+      <h2>Carteirinha não encontrada</h2>
+      <p class="subtitulo">O link acessado é inválido ou o cadastro não existe.</p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="config.js"></script>
+  <script src="assets/supabase-client.js"></script>
+  <script src="carteirinha.js"></script>
+</body>
+</html>

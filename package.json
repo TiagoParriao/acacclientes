@@ -1,0 +1,13 @@
+{
+  "name": "sistema-acac-import",
+  "private": true,
+  "type": "module",
+  "description": "Script local de importação dos cadastros existentes para o Supabase. Não faz parte do site publicado.",
+  "scripts": {
+    "importar": "node scripts/importar-cadastros.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "xlsx": "^0.18.5"
+  }
+}

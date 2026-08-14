@@ -1,49 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dados do Funcionário</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .situacao-card {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f8f9fa; /* Cor de fundo suave */
-            border: 2px solid #007bff; /* Borda azul */
-            border-radius: 8px; /* Bordas arredondadas */
-            padding: 10px 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-            width: fit-content;
-            margin: 10px auto; /* Centraliza o card */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carteira Digital de Filiado — ACAC</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <div class="logo">
-        <img src="logo-empresa.png" alt="Logo da Empresa">
-    </div>
+  <div class="logo">
+    <img src="assets/logo-empresa.png" alt="Logo ACAC">
+  </div>
 
+  <div class="container">
     <div class="card">
-        <div class="foto">
-            <img id="Foto de Identificação (3x4)" src="" alt="Foto do Funcionário">
-        </div>
-        <div class="dados">
-            <h1>Dados do Funcionário</h1>
-            <p><strong>Empresa:</strong> <span id="Nome da Empresa:"></span></p>
-            <p><strong>CNPJ:</strong> <span id="CNPJ:"></span></p>
-            <p><strong>Nome:</strong> <span id="Nome Completo:"></span></p>
-            <div class="situacao-card">
-                <div><strong>Situação:</strong></div>  
-                <div id="Situação:"></div> 
-            </div>
-        </div>
-    </div>
+      <h1>Carteira Digital de Filiado</h1>
+      <p class="subtitulo">Associação Comercial e Agro Industrial de Curionópolis</p>
 
-    <script src="script.js" defer></script>
+      <div class="links-index">
+        <a href="cadastro.html" class="btn">Fazer meu cadastro</a>
+        <a href="validar.html" class="btn btn-secundario">Sou empresa parceira — validar carteirinha</a>
+        <a href="admin/login.html" class="btn btn-secundario">Acesso do gestor (admin)</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
