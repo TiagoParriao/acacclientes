@@ -60,6 +60,7 @@ function renderizarTabela() {
       <td>
         <div class="acoes-linha">
           <button class="btn btn-secundario btn-pequeno" data-acao="toggle" data-id="${filiado.id}" data-nova="${proximaSituacao}">${rotuloAcaoRapida}</button>
+          <button class="btn btn-secundario btn-pequeno" data-acao="copiar-link" data-token="${filiado.token_qr}">Copiar link</button>
           <a class="btn btn-secundario btn-pequeno" href="editar.html?id=${filiado.id}">Editar</a>
         </div>
       </td>
@@ -77,7 +78,7 @@ function escaparHtml(texto) {
 async function carregarFiliados() {
   const { data, error } = await supabaseClient
     .from('filiados')
-    .select('id, nome, empresa, cnpj, situacao')
+    .select('id, nome, empresa, cnpj, situacao, token_qr')
     .order('criado_em', { ascending: false });
 
   carregando.style.display = 'none';
@@ -93,24 +94,34 @@ async function carregarFiliados() {
 }
 
 corpoTabela.addEventListener('click', async (evento) => {
-  const botao = evento.target.closest('button[data-acao="toggle"]');
-  if (!botao) return;
+  const botaoToggle = evento.target.closest('button[data-acao="toggle"]');
+  if (botaoToggle) {
+    botaoToggle.disabled = true;
+    const id = botaoToggle.dataset.id;
+    const novaSituacao = botaoToggle.dataset.nova;
 
-  botao.disabled = true;
-  const id = botao.dataset.id;
-  const novaSituacao = botao.dataset.nova;
+    const { error } = await supabaseClient
+      .from('filiados')
+      .update({ situacao: novaSituacao })
+      .eq('id', id);
 
-  const { error } = await supabaseClient
-    .from('filiados')
-    .update({ situacao: novaSituacao })
-    .eq('id', id);
+    if (!error) {
+      const filiado = todosFiliados.find((f) => f.id === id);
+      filiado.situacao = novaSituacao;
+      renderizarTabela();
+    } else {
+      botaoToggle.disabled = false;
+    }
+    return;
+  }
 
-  if (!error) {
-    const filiado = todosFiliados.find((f) => f.id === id);
-    filiado.situacao = novaSituacao;
-    renderizarTabela();
-  } else {
-    botao.disabled = false;
+  const botaoCopiar = evento.target.closest('button[data-acao="copiar-link"]');
+  if (botaoCopiar) {
+    const link = new URL(`../carteirinha.html?token=${botaoCopiar.dataset.token}`, window.location.href).href;
+    await navigator.clipboard.writeText(link);
+    const textoOriginal = botaoCopiar.textContent;
+    botaoCopiar.textContent = 'Copiado!';
+    setTimeout(() => { botaoCopiar.textContent = textoOriginal; }, 1500);
   }
 });
 

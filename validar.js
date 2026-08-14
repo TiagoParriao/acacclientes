@@ -22,16 +22,7 @@ function extrairToken(textoLido) {
   }
 }
 
-async function aoLerCodigo(textoDecodificado) {
-  if (processando) return;
-  processando = true;
-
-  await leitor.pause(true);
-  leitorDiv.style.display = 'none';
-  btnNovaLeitura.style.display = 'block';
-
-  const token = extrairToken(textoDecodificado);
-
+async function mostrarResultado(token) {
   resultado.style.display = 'none';
   erroResultado.style.display = 'none';
 
@@ -56,16 +47,29 @@ async function aoLerCodigo(textoDecodificado) {
 
   resultado.style.display = 'block';
 
-  supabaseClient.rpc('registrar_validacao', { p_token: token, p_origem: 'web' }).catch(() => {});
+  supabaseClient.rpc('registrar_validacao', { p_token: token, p_origem: 'web' }).then(() => {}, () => {});
+}
+
+async function aoLerCodigo(textoDecodificado) {
+  if (processando) return;
+  processando = true;
+
+  await leitor.pause(true);
+  leitorDiv.style.display = 'none';
+  btnNovaLeitura.style.display = 'block';
+  btnNovaLeitura.textContent = 'Ler outro QR code';
+
+  await mostrarResultado(extrairToken(textoDecodificado));
 }
 
 function iniciarLeitor() {
+  leitorDiv.style.display = 'block';
   leitor = new Html5Qrcode('leitor-qr');
   leitor.start(
     { facingMode: 'environment' },
     { fps: 10, qrbox: { width: 240, height: 240 } },
     aoLerCodigo
-  ).catch((erro) => {
+  ).catch(() => {
     erroResultado.textContent = 'Não foi possível acessar a câmera. Verifique as permissões do navegador.';
     erroResultado.style.display = 'block';
   });
@@ -76,8 +80,23 @@ btnNovaLeitura.addEventListener('click', () => {
   resultado.style.display = 'none';
   erroResultado.style.display = 'none';
   btnNovaLeitura.style.display = 'none';
-  leitorDiv.style.display = 'block';
-  leitor.resume();
+
+  if (leitor) {
+    leitorDiv.style.display = 'block';
+    leitor.resume();
+  } else {
+    iniciarLeitor();
+  }
 });
 
-iniciarLeitor();
+// Se o QR foi lido pela câmera nativa do celular (fora do site), o link já vem
+// com o token na URL — mostramos o resultado direto, sem precisar abrir a câmera de novo.
+const tokenDaUrl = new URLSearchParams(window.location.search).get('token');
+if (tokenDaUrl) {
+  leitorDiv.style.display = 'none';
+  btnNovaLeitura.style.display = 'block';
+  btnNovaLeitura.textContent = 'Ler outro QR code pela câmera';
+  mostrarResultado(tokenDaUrl);
+} else {
+  iniciarLeitor();
+}

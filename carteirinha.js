@@ -35,8 +35,9 @@ async function carregarCarteirinha() {
   badge.textContent = rotulosSituacao[filiado.situacao] || filiado.situacao;
   badge.classList.add(filiado.situacao);
 
+  const linkValidacao = new URL(`validar.html?token=${token}`, window.location.href).href;
   new QRCode(document.getElementById('qr-code-container'), {
-    text: token,
+    text: linkValidacao,
     width: 180,
     height: 180,
   });
