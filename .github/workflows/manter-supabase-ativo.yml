@@ -5,16 +5,27 @@ name: Manter Supabase ativo
 # contar como atividade e evitar a pausa automática. Não grava nem lê dados
 # sensíveis — usa a função pública consultar_por_token com um código que não
 # existe, então sempre retorna uma lista vazia.
+#
+# Ele também grava a data do último ping em .github/ultimo-ping.txt e comita
+# essa mudança. Isso mantém o próprio repositório "ativo", porque o GitHub
+# desativa automaticamente workflows agendados em repositórios sem nenhum
+# commit por 60 dias — assim o ciclo se sustenta sozinho, sem precisar de
+# ninguém entrando no site ou no GitHub.
 
 on:
   schedule:
     - cron: '0 12 */3 * *'
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: Chamar a API do Supabase
         run: |
           status=$(curl -s -o /dev/null -w "%{http_code}" \
@@ -28,3 +39,13 @@ jobs:
             echo "Chamada falhou com status $status"
             exit 1
           fi
+
+      - name: Registrar o ping (mantém o repositório ativo)
+        run: |
+          mkdir -p .github
+          date -u +"Último ping: %Y-%m-%d %H:%M UTC" > .github/ultimo-ping.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/ultimo-ping.txt
+          git diff --staged --quiet || git commit -m "chore: registra ping automático do Supabase"
+          git push
