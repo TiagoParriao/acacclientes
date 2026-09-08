@@ -1,10 +1,11 @@
 name: Manter Supabase ativo
 
 # O plano gratuito do Supabase pausa o projeto depois de ~7 dias sem uso.
-# Este workflow faz uma chamada leve e inofensiva à API a cada 3 dias só para
-# contar como atividade e evitar a pausa automática. Não grava nem lê dados
-# sensíveis — usa a função pública consultar_por_token com um código que não
-# existe, então sempre retorna uma lista vazia.
+# Este workflow chama a cada 3 dias a função registrar_heartbeat(), que grava
+# (e depois limpa, com mais de 30 dias) uma linha na tabela public.heartbeat.
+# É uma escrita real no banco — uma leitura vazia (como tentamos antes) não
+# foi suficiente para o Supabase contar como atividade e evitar a pausa.
+# Não mexe em nenhum dado de filiado.
 #
 # Ele também grava a data do último ping em .github/ultimo-ping.txt e comita
 # essa mudança. Isso mantém o próprio repositório "ativo", porque o GitHub
@@ -26,14 +27,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Chamar a API do Supabase
+      - name: Gravar heartbeat no Supabase
         run: |
           status=$(curl -s -o /dev/null -w "%{http_code}" \
-            -X POST "https://meyyoupxkemchccfmqdd.supabase.co/rest/v1/rpc/consultar_por_token" \
+            -X POST "https://meyyoupxkemchccfmqdd.supabase.co/rest/v1/rpc/registrar_heartbeat" \
             -H "apikey: sb_publishable_2e8B-w6A1gStncxyPUQb7A_y0CBMjsa" \
             -H "Authorization: Bearer sb_publishable_2e8B-w6A1gStncxyPUQb7A_y0CBMjsa" \
             -H "Content-Type: application/json" \
-            -d '{"p_token": "00000000-0000-0000-0000-000000000000"}')
+            -d '{}')
           echo "Status da resposta: $status"
           if [ "$status" -ge 300 ]; then
             echo "Chamada falhou com status $status"
